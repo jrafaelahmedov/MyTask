@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgInformation"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/ic_info"
+            />
+        
+        <TextView
+            android:id="@+id/textView"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="REGISTER A NEW ACCOUNT"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/black"
+            />
+
+
+
+        <EditText
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Email"
+            android:id="@+id/inputEmail"
+            android:layout_below="@id/textView"/>
+
+
+
+
+        <EditText
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:id="@+id/inputPassword"
+            android:layout_below="@id/inputEmail"
+            />
+
+
+        <EditText
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Pin (Maximum 4 number)"
+            android:id="@+id/inputPin"
+            android:layout_below="@id/inputPassword"
+            />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Registration"
+            android:id="@+id/btnRegistration"
+            android:layout_below="@id/inputPin"
+            android:layout_centerInParent="true"/>
+        
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:id="@+id/txtToSwichUpLoginPage"
+            android:text="Have an account? Log in"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:layout_below="@+id/btnRegistration"
+            android:textColor="@color/blue"
+            android:autoLink="all"
+            android:linksClickable="true"
+            />
+        
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:layout_centerInParent="true"
+            android:id="@+id/progressBarRegistration"/>
+        
+
+    </RelativeLayout>
+    
+</RelativeLayout>

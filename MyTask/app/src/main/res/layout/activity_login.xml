@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+   
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+            android:text="Please Login:"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:gravity="center_horizontal"
+            />
+        
+        
+        <EditText
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Email"
+            android:id="@+id/inputEmail"
+            android:layout_below="@id/textView"/>
+
+
+
+   
+        <EditText
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:id="@+id/inputPassword"
+            android:layout_below="@id/inputEmail"
+            />
+
+   
+    
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:text="Login"
+        android:id="@+id/btnLogin"
+        android:layout_below="@id/inputPassword"
+        android:layout_marginLeft="100dp"
+        />
+
+        
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:text="Registration"
+            android:id="@+id/btnRegistration"
+            android:layout_below="@id/inputPassword"
+            android:layout_toRightOf="@id/btnLogin"/>
+
+       
+        
+    </RelativeLayout>
+    
+    
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/progressBarLogin"/>
+    
+    
+</RelativeLayout>

@@ -1,4 +1,4 @@
-package com.example.rmaahmadov.mytask;
+package com.example.rmaahmadov.mytask.fragments;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.rmaahmadov.mytask.R;
 
 public class InforationFragment extends Fragment {
     @Nullable

@@ -1,4 +1,4 @@
-package com.example.rmaahmadov.mytask;
+package com.example.rmaahmadov.mytask.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,12 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class SportNewaFragment extends Fragment {
+import com.example.rmaahmadov.mytask.R;
+
+public class WorldNewsFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sportnews,container,false);
+        View view = inflater.inflate(R.layout.fragment_worldnews,container,false);
 
         return view;
     }

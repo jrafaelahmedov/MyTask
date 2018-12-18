@@ -1,9 +1,11 @@
-package com.example.rmaahmadov.mytask;
+package com.example.rmaahmadov.mytask.activitys;
 
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+
+import com.example.rmaahmadov.mytask.R;
 
 public class LoginActivity extends AppCompatActivity {
     @Override

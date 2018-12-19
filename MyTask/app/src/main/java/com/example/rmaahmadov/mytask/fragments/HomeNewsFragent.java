@@ -1,9 +1,11 @@
 package com.example.rmaahmadov.mytask.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +24,7 @@ import com.example.rmaahmadov.mytask.api.ApiClient;
 import com.example.rmaahmadov.mytask.api.ApiInterface;
 import com.example.rmaahmadov.mytask.models.Article;
 import com.example.rmaahmadov.mytask.models.News;
+import com.example.rmaahmadov.mytask.models.Source;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,8 +91,16 @@ public class HomeNewsFragent extends  Fragment  implements MyInterface {
     }
 
     @Override
-    public void setOnclick(View v) {
-       
-        System.out.println("myview .........................");
+    public void setOnclick(View v,int pozition) {
+      if(v!=null&&adapter!=null){
+          FragmentTransaction fragmentTransaction =getFragmentManager().beginTransaction();
+          Article model = articles.get(pozition);
+          adapter=new Adapter((List<Article>) model,getActivity(), HomeNewsFragent.this);
+          recyclerView.setAdapter(adapter);
+          adapter.notifyDataSetChanged();
+          fragmentTransaction.add(R.id.recylerViewNewTab,new NewTabFragment());
+          fragmentTransaction.commit();
+      }
+        System.out.println("myview ........................." +pozition);
     }
 }

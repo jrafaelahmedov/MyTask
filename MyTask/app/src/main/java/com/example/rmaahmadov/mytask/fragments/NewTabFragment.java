@@ -9,12 +9,12 @@ import android.view.ViewGroup;
 
 import com.example.rmaahmadov.mytask.R;
 
-public class WorldNewsFragment extends Fragment {
+public class NewTabFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_worldnews,container,false);
+        View view = inflater.inflate(R.layout.fragment_newtab,container,false);
 
         return view;
     }

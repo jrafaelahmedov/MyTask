@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#92000000"
+    android:id="@+id/frag_containerPin"
+    >
 
     <ImageView
         android:layout_width="wrap_content"
@@ -9,6 +12,7 @@
         android:id="@+id/imgInformation"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
+        android:onClick="informationPin"
         android:src="@drawable/ic_info"
         />
     
@@ -18,9 +22,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="PLEASE ENTER PIN"
-        android:textSize="20sp"
+        android:textColor="#FFF8DC"
+        android:textSize="35sp"
         android:gravity="center_horizontal"
-        android:textColor="@color/black"
         />
 
 
@@ -29,11 +33,14 @@
         android:id="@+id/login_pin"
         android:layout_marginTop="50dp"
         android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:maxLength="4"
+        android:paddingLeft="5dp"
         android:hint="Pin"
-        android:inputType="textPassword" 
+        android:text="1234"
+        android:inputType="numberPassword" 
+        android:background="@color/white"
         android:layout_below="@id/textView"/>
 
     <ProgressBar

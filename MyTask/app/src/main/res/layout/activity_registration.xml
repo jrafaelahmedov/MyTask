@@ -2,100 +2,117 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" 
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/frag_containerRegistartion"
+    >
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#92000000"
         android:orientation="vertical">
 
 
         <ImageView
+            android:id="@+id/imgInformation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imgInformation"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
-            android:src="@drawable/ic_info"
-            />
-        
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_info" />
+
         <TextView
             android:id="@+id/textView"
-            android:layout_marginTop="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="REGISTER A NEW ACCOUNT"
-            android:textSize="20sp"
+            android:layout_marginTop="100dp"
             android:gravity="center_horizontal"
-            android:textColor="@color/black"
-            />
-
+            android:text="PLEASE SIGN UP"
+            android:textColor="#FFF8DC"
+            android:textSize="35sp" />
 
 
         <EditText
+            android:id="@+id/inputEmailRegistration"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/textView"
+            android:layout_centerInParent="true"
             android:layout_marginTop="50dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
+            android:background="@color/white"
+            android:paddingLeft="5dp"
             android:hint="Email"
-            android:id="@+id/inputEmail"
-            android:layout_below="@id/textView"/>
-
-
+            android:inputType="textEmailAddress" />
 
 
         <EditText
+            android:id="@+id/inputPasswordRegistration"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/inputEmailRegistration"
+            android:layout_centerInParent="true"
             android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
+            android:background="@color/white"
+            android:paddingLeft="5dp"
             android:hint="Password"
-            android:id="@+id/inputPassword"
-            android:layout_below="@id/inputEmail"
-            />
+            android:inputType="textPassword" />
 
 
         <EditText
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="Pin (Maximum 4 number)"
             android:id="@+id/inputPin"
-            android:layout_below="@id/inputPassword"
-            />
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/inputPasswordRegistration"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dp"
+            android:maxLength="4"
+            android:paddingLeft="5dp"
+            android:background="@color/white"
+            android:hint="Pin (Maximum 4 number)"
+            android:inputType="numberPassword" />
 
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Registration"
             android:id="@+id/btnRegistration"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
             android:layout_below="@id/inputPin"
-            android:layout_centerInParent="true"/>
-        
-        
+            android:layout_centerInParent="true"
+            android:layout_marginTop="3dp"
+            android:background="@color/white"
+            android:onClick="signUp"
+            android:text="Sign up" />
+
+
         <TextView
+            android:id="@+id/txtToSwichUpLoginPage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
-            android:id="@+id/txtToSwichUpLoginPage"
-            android:text="Have an account? Log in"
-            android:gravity="center"
-            android:textSize="16sp"
             android:layout_below="@+id/btnRegistration"
-            android:textColor="@color/blue"
-            android:autoLink="all"
-            android:linksClickable="true"
-            />
-        
-        <ProgressBar
+            android:gravity="center"
+            android:text="Have an account?"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/textViewMoveToLogin"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtToSwichUpLoginPage"
             android:layout_centerInParent="true"
-            android:id="@+id/progressBarRegistration"/>
-        
+            android:text="Sign in"
+            android:onClick="moveToSignIn"
+            android:textColor="#49A4AA"
+            android:textStyle="bold"
+            android:textSize="20dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBarRegistration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
 
     </RelativeLayout>
     

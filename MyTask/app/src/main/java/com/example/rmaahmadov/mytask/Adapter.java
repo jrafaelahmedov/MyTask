@@ -111,7 +111,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemView.setOnClickListener(this);
             title = itemView.findViewById(R.id.title);
             desc = itemView.findViewById(R.id.desc);
             author = itemView.findViewById(R.id.author);
@@ -127,7 +126,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         @Override
         @Nullable
         public void onClick(View v) {
-            myInterface.setOnclick(v);
+            myInterface.setOnclick(v,getPosition());
         }
     }
 }

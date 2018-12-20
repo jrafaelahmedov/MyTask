@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -34,6 +35,8 @@ public class PinFragment extends Fragment {
     ImageView informationImg;
     RelativeLayout topBarlayout;
     LoginFragment fragment;
+    RelativeLayout homeActivity;
+    RelativeLayout homeActivity1;
     
 
     @Nullable
@@ -56,19 +59,24 @@ public class PinFragment extends Fragment {
                 if (s.length() == 4) {
                     Boolean res = db.checkUserPin(pin);
                     if (res == true) {
-                        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getActivity().getSupportFragmentManager());
-                        topBarlayout=getActivity().findViewById(R.id.relLayout1);
-                        topBarlayout.setVisibility(View.VISIBLE);
-                        sectionsPagerAdapter.addFragment(new HomeNewsFragent());//0
-                        sectionsPagerAdapter.addFragment(new SportNewsFragment());//1
-                        ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.myContainer);
-                        viewPager.setAdapter(sectionsPagerAdapter);
-                        TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.layout_tabs);
-                        tabLayout.setupWithViewPager(viewPager);
-                        tabLayout.getTabAt(0).setIcon(R.drawable.ic_homefeeds);
-                        tabLayout.getTabAt(1).setIcon(R.drawable.ic_sportfeeds);
+//                        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getActivity().getSupportFragmentManager());
+//                        topBarlayout=getActivity().findViewById(R.id.relLayout1);
+//                        topBarlayout.setVisibility(View.VISIBLE);
+//                        sectionsPagerAdapter.addFragment(new HomeNewsFragent());//0
+//                        sectionsPagerAdapter.addFragment(new SportNewsFragment());//1
+//                        ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.myContainer);
+//                        viewPager.setAdapter(sectionsPagerAdapter);
+//                        TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.layout_tabs);
+//                        tabLayout.setupWithViewPager(viewPager);
+//                        tabLayout.getTabAt(0).setIcon(R.drawable.ic_homefeeds);
+//                        tabLayout.getTabAt(1).setIcon(R.drawable.ic_sportfeeds);
                         Toast.makeText(getActivity(), "Welcome", Toast.LENGTH_LONG).show();
-                        PinFragment.this.onDestroy();
+                        getFragmentManager().beginTransaction().remove(PinFragment.this).commitAllowingStateLoss();
+                        homeActivity=getActivity().findViewById(R.id.relLayout2);
+                        homeActivity1=getActivity().findViewById(R.id.relLayout1);
+                        homeActivity1.setVisibility(View.VISIBLE);
+                        homeActivity.setVisibility(View.VISIBLE);
+
                     } else {
                         Toast.makeText(getActivity(), "Email or Password invalid!!", Toast.LENGTH_LONG).show();
                     }

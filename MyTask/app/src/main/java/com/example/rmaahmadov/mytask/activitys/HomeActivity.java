@@ -40,11 +40,11 @@ public class HomeActivity extends AppCompatActivity {
         mContex = HomeActivity.this;
         topBarlayout.setVisibility(View.GONE);
         db = new DatabaseHelper(this);
-            
+        setupViewPager();
         
         fragment = new LoginFragment();
             createLoginFragment();
-//        setupViewPager();
+
     }
 
     public void createLoginFragment() {
@@ -66,17 +66,17 @@ public class HomeActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-//    private void setupViewPager() {
-//        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-//        sectionsPagerAdapter.addFragment(new HomeNewsFragent());//0
-//        sectionsPagerAdapter.addFragment(new SportNewsFragment());//1
-//        ViewPager viewPager = (ViewPager) findViewById(R.id.myContainer);
-//        viewPager.setAdapter(sectionsPagerAdapter);
-//        TabLayout tabLayout = (TabLayout) findViewById(R.id.layout_tabs);
-//        tabLayout.setupWithViewPager(viewPager);
-//        tabLayout.getTabAt(0).setIcon(R.drawable.ic_homefeeds);
-//        tabLayout.getTabAt(1).setIcon(R.drawable.ic_sportfeeds);
-//
-//    }
+    private void setupViewPager() {
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        sectionsPagerAdapter.addFragment(new HomeNewsFragent());//0
+        sectionsPagerAdapter.addFragment(new SportNewsFragment());//1
+        ViewPager viewPager = (ViewPager) findViewById(R.id.myContainer);
+        viewPager.setAdapter(sectionsPagerAdapter);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.layout_tabs);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_homefeeds);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_sportfeeds);
+
+    }
 
 }

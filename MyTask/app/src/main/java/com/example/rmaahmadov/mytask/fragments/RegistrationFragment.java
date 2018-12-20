@@ -2,7 +2,9 @@ package com.example.rmaahmadov.mytask.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,8 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +35,10 @@ public class RegistrationFragment extends Fragment {
     DatabaseHelper db;
     RegistrationFragment fragmentRegistration;
     LoginFragment fragmentLogin;
+    RelativeLayout homeActivity;
+    RelativeLayout homeActivity1;
+
+
 
     @Nullable
     @Override
@@ -69,9 +77,11 @@ public class RegistrationFragment extends Fragment {
                     int pin = Integer.parseInt(mPin.getText().toString().trim());
                     long val = db.addUser(email, password, pin);
                     if (val > 0) {
-                        FragmentManager fm = getFragmentManager();
-                        HomeNewsFragent fragment = new HomeNewsFragent();
-                        fm.beginTransaction().add(R.id.frag_containerRegistartion, fragment).commit();
+                        getFragmentManager().beginTransaction().remove(RegistrationFragment.this).commitAllowingStateLoss();
+                        homeActivity=getActivity().findViewById(R.id.relLayout2);
+                        homeActivity1=getActivity().findViewById(R.id.relLayout1);
+                        homeActivity1.setVisibility(View.VISIBLE);
+                        homeActivity.setVisibility(View.VISIBLE);
                     }
                 } else {
                     Toast.makeText(getActivity(), "Pin is empty!!", Toast.LENGTH_SHORT).show();

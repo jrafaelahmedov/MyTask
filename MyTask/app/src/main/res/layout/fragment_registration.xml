@@ -84,7 +84,6 @@
             android:onClick="signUp"
             android:text="Sign up" />
 
-
         <TextView
             android:id="@+id/txtToSwichUpLoginPage"
             android:layout_width="match_parent"

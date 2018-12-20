@@ -15,7 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_2 = "email";
     public static final String COL_3 = "password";
     public static final String COL_4 = "pin";
-
+    
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -74,5 +74,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+    
 
 }

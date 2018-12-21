@@ -1,13 +1,16 @@
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:id="@+id/toolBar">
 
             <android.support.design.widget.TabLayout
                 android:layout_width="match_parent"
@@ -15,12 +18,30 @@
                 android:id="@+id/layout_tabs"
                 android:background="@drawable/white_gray_border_bottom">
 
-                
+
+
 
             </android.support.design.widget.TabLayout>
 
+            </android.support.v7.widget.Toolbar>
+
         </android.support.design.widget.AppBarLayout>
 
-    </android.support.v7.widget.Toolbar>
+
+
+    <android.support.design.widget.NavigationView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:itemTextColor="@color/black"
+        app:itemIconTint="@color/black"
+        android:id="@+id/nav_view"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/drawermenu"
+        android:layout_gravity="start">
+
+    </android.support.design.widget.NavigationView>
+
+
 
 </merge>

@@ -59,9 +59,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
 
                         menuItem.setChecked(true);
+                        if (menuItem.getItemId()==R.id.drawermenuAbout){
                         // close drawer when item is tapped
-
-                        return true;
+                        System.out.println("ckicked.....");}
+                        return false;
                     }
                 });
     }
@@ -117,7 +118,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
     private void createMenuSlider() {
-        Toolbar toolbar1 = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar1 = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolbar1);
 
         mTogger = new ActionBarDrawerToggle(this, mDrawerLayout,toolbar1, R.string.open, R.string.close);
@@ -127,7 +128,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         mTogger.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void createNecessary() {

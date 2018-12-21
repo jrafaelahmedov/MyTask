@@ -39,6 +39,7 @@ public class LoginFragment extends Fragment {
     RelativeLayout homeActivity1;
     CheckBox checkBoxLogin;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -55,10 +56,10 @@ public class LoginFragment extends Fragment {
         fragmentRegistration = new RegistrationFragment();
         fragmentLogin = new LoginFragment();
         fragmentPin = new PinFragment();
+
         mProgressbar.setVisibility(View.GONE);
         homeActivity1.setVisibility(View.GONE);
         homeActivity.setVisibility(View.GONE);
-        SharedPreferences preferences = getActivity().getSharedPreferences("SavedUser", Context.MODE_PRIVATE);
 //        if (!preferences.getString("email", "").equals(null)&&!preferences.getString("password","").equals(null)) {
 //            getFragmentManager().beginTransaction().remove(LoginFragment.this).commitAllowingStateLoss();
 //            homeActivity1.setVisibility(View.VISIBLE);

@@ -92,15 +92,6 @@ public class HomeNewsFragent extends  Fragment  implements MyInterface {
 
     @Override
     public void setOnclick(View v,int pozition) {
-      if(v!=null&&adapter!=null){
-          FragmentTransaction fragmentTransaction =getFragmentManager().beginTransaction();
-          Article model = articles.get(pozition);
-          adapter=new Adapter((List<Article>) model,getActivity(), HomeNewsFragent.this);
-          recyclerView.setAdapter(adapter);
-          adapter.notifyDataSetChanged();
-          fragmentTransaction.add(R.id.recylerViewNewTab,new NewTabFragment());
-          fragmentTransaction.commit();
-      }
         System.out.println("myview ........................." +pozition);
     }
 }

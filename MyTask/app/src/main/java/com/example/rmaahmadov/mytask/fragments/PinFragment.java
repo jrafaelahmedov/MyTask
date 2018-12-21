@@ -45,7 +45,6 @@ public class PinFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pin, container, false);
         loginPin = view.findViewById(R.id.login_pin);
         mProgressbar = view.findViewById(R.id.progressBarPin);
-        informationImg = view.findViewById(R.id.imgInformation);
         mProgressbar.setVisibility(View.GONE);
         db = new DatabaseHelper(getActivity());
         loginPin.addTextChangedListener(new TextWatcher() {
@@ -89,14 +88,7 @@ public class PinFragment extends Fragment {
             }
         });
 
-        informationImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fm = getFragmentManager();
-                InforationFragment fragment = new InforationFragment();
-                fm.beginTransaction().replace(R.id.frag_containerPin, fragment).commit();
-            }
-        });
+
      return view;
     }
 

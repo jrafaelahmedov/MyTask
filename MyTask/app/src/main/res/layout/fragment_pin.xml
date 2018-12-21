@@ -6,15 +6,6 @@
     android:id="@+id/frag_containerPin"
     >
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imgInformation"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:onClick="informationPin"
-        android:src="@drawable/ic_info"
-        />
     
     <TextView
         android:id="@+id/textView"

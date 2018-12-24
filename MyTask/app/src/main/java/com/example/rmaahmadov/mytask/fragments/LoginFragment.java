@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,8 +36,6 @@ public class LoginFragment extends Fragment {
     RegistrationFragment fragmentRegistration;
     LoginFragment fragmentLogin;
     PinFragment fragmentPin;
-    RelativeLayout homeActivity;
-    RelativeLayout homeActivity1;
     CheckBox checkBoxLogin;
 
 
@@ -50,21 +49,12 @@ public class LoginFragment extends Fragment {
         mProgressbar = view.findViewById(R.id.progressBarLogin);
         checkBoxLogin = view.findViewById(R.id.checkboxLogin);
         moveToRegistartion = view.findViewById(R.id.textViewMoveToRegistration);
-        homeActivity = getActivity().findViewById(R.id.relLayout2);
-        homeActivity1 = getActivity().findViewById(R.id.relLayout1);
         db = new DatabaseHelper(getActivity());
         fragmentRegistration = new RegistrationFragment();
         fragmentLogin = new LoginFragment();
         fragmentPin = new PinFragment();
-
         mProgressbar.setVisibility(View.GONE);
-        homeActivity1.setVisibility(View.GONE);
-        homeActivity.setVisibility(View.GONE);
-//        if (!preferences.getString("email", "").equals(null)&&!preferences.getString("password","").equals(null)) {
-//            getFragmentManager().beginTransaction().remove(LoginFragment.this).commitAllowingStateLoss();
-//            homeActivity1.setVisibility(View.VISIBLE);
-//            homeActivity.setVisibility(View.VISIBLE);
-//        }
+
 
         moveToRegistartion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +62,7 @@ public class LoginFragment extends Fragment {
                 mProgressbar.setVisibility(View.VISIBLE);
                 FragmentManager manager = getFragmentManager();
                 manager.beginTransaction()
-                        .replace(R.id.activityhomelayout, fragmentRegistration).commit();
+                        .replace(R.id.fragmentContainer, fragmentRegistration).commit();
             }
         });
 
@@ -95,16 +85,13 @@ public class LoginFragment extends Fragment {
                     FragmentManager manager = getFragmentManager();
                     manager.beginTransaction()
                             .replace(R.id.activityhomelayout, fragmentPin).commit();
+//                    fragmentLogin.onDestroy();
                 } else {
-
                     Toast.makeText(getActivity(), "Email or Password invalid!!", Toast.LENGTH_LONG).show();
-
                 }
                 mProgressbar.setVisibility(View.GONE);
             }
         });
-
-
         return view;
     }
 }

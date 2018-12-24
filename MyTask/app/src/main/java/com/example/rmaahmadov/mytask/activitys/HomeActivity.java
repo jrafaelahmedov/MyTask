@@ -2,41 +2,49 @@ package com.example.rmaahmadov.mytask.activitys;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 
 import com.example.rmaahmadov.mytask.R;
-import com.example.rmaahmadov.mytask.fragments.HomeNewsFragent;
+import com.example.rmaahmadov.mytask.fragments.AboutUsFragment;
 import com.example.rmaahmadov.mytask.fragments.LoginFragment;
 import com.example.rmaahmadov.mytask.fragments.PinFragment;
-import com.example.rmaahmadov.mytask.fragments.SportNewsFragment;
 import com.example.rmaahmadov.mytask.utils.DatabaseHelper;
 import com.example.rmaahmadov.mytask.utils.SectionsPagerAdapter;
 
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    RelativeLayout topBarlayout;
     LoginFragment fragment;
     DatabaseHelper db;
     PinFragment fragmentPin;
-    RelativeLayout homeActivity;
+    CoordinatorLayout coordinatorLayout;
+    ViewPager mViewPager;
+    MenuItem menuItem;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mTogger;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
 
 
     @Override
@@ -48,27 +56,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setupViewPager();
         createMenuSlider();
         controlUser();
-        myMenu();
     }
 
-    private void myMenu() {
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-
-                        menuItem.setChecked(true);
-                        if (menuItem.getItemId()==R.id.drawermenuAbout){
-                        // close drawer when item is tapped
-                        System.out.println("ckicked.....");}
-                        return false;
-                    }
-                });
-    }
 
     public void createLoginFragment() {
-
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction()
                 .add(R.id.activityhomelayout, fragment).commit();
@@ -77,39 +68,30 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (mTogger.onOptionsItemSelected(item)) {
-            return true;
-        }
-        findViewById(R.id.drawermenuLogout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager manager = getSupportFragmentManager();
-                manager.beginTransaction()
-                        .add(R.id.activityhomelayout, fragment).commit();
-            }
-        });
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onBackPressed() {
         int fragments = getFragmentManager().getBackStackEntryCount();
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.activityhomelayout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
         if (fragments == 1) {
-            fragment.onDestroy();
             this.finish();
         }
         super.onBackPressed();
     }
+
 
     private void controlUser() {
         SharedPreferences preferences = getSharedPreferences("SavedUser", Context.MODE_PRIVATE);
         String email = preferences.getString("email", "");
         String password = preferences.getString("password", "");
         if (db.checkUserAndMovePinPage(email, password)) {
-            homeActivity.setVisibility(View.GONE);
             FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().add(R.id.activityhomelayout, fragmentPin).commit();
+            manager.beginTransaction().replace(R.id.activityhomelayout, fragmentPin).commit();
+
         } else {
             fragment = new LoginFragment();
             createLoginFragment();
@@ -118,17 +100,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
     private void createMenuSlider() {
-        Toolbar toolbar1 = (Toolbar) findViewById(R.id.toolBar);
-        setSupportActionBar(toolbar1);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.activityhomelayout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.open, R.string.close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
-        mTogger = new ActionBarDrawerToggle(this, mDrawerLayout,toolbar1, R.string.open, R.string.close);
-        mDrawerLayout.addDrawerListener(mTogger);
-        mDrawerLayout.bringToFront();
-        mDrawerLayout.addDrawerListener(mTogger);
-        mTogger.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        navigationView.bringToFront();
     }
 
     private void createNecessary() {
@@ -138,38 +120,83 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
     private void setupInit() {
-        topBarlayout = findViewById(R.id.relLayout1);
-        homeActivity = findViewById(R.id.relLayout2);
+        coordinatorLayout = findViewById(R.id.coordinatorLayoutHomeActivity);
+        coordinatorLayout.setVisibility(View.INVISIBLE);
         mDrawerLayout = findViewById(R.id.activityhomelayout);
-        topBarlayout.setVisibility(View.GONE);
     }
 
     private void setupViewPager() {
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        sectionsPagerAdapter.addFragment(new HomeNewsFragent());//0
-        sectionsPagerAdapter.addFragment(new SportNewsFragment());//1
-        ViewPager viewPager = (ViewPager) findViewById(R.id.myContainer);
-        viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.layout_tabs);
-        tabLayout.setupWithViewPager(viewPager);
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_homefeeds);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_sportfeeds);
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
 
     }
 
+
+    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
 
-        int id = menuItem.getItemId();
-
-        if (id == R.id.drawermenuLogout) {
-            System.out.println("logout clicked..........................");
+        if (id == R.id.drawermenuAbout) {
+           Fragment fragment=new AboutUsFragment();
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction()
                     .add(R.id.activityhomelayout, fragment).commit();
-            return true;
-        } else {
-            return false;
+            coordinatorLayout.setVisibility(View.GONE);
+        } else if (id == R.id.drawermenuContact) {
+            alertCallUs();
+        } else if (id == R.id.drawermenuLogout) {
+            logOut();
         }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.activityhomelayout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+
+    private void alertCallUs() {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(HomeActivity.this);
+        builder1.setMessage("Do you want to call us? \n +994504500501");
+        builder1.setCancelable(true);
+
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent dial = new Intent();
+                        dial.setAction("android.intent.action.DIAL");
+                        try {
+                            dial.setData(Uri.parse("tel:+994504500501"));
+                            startActivity(dial);
+                        } catch (Exception e) {
+                            Log.e("Calling", "" + e.getMessage());
+                        }
+
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
+
+    private void logOut() {
+        SharedPreferences preferences = getSharedPreferences("SavedUser", Context.MODE_PRIVATE);
+        preferences.edit().clear().commit();
+        coordinatorLayout.setVisibility(View.GONE);
+        fragment = new LoginFragment();
+        createLoginFragment();
     }
 }

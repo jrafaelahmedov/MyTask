@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#92000000">
+        android:background="#81ae04">
 
         <TextView
             android:id="@+id/textView"
@@ -104,7 +104,8 @@
             android:onClick="moveToSingUp"
             android:text="Sign up"
             android:textSize="20dp"
-            android:textColor="@color/blue" />
+            android:textStyle="bold"
+            android:textColor="#0000ff" />
 
 
     </RelativeLayout>

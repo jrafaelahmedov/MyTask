@@ -62,7 +62,10 @@ public class RegistrationFragment extends Fragment {
                 mProgressbar.setVisibility(View.VISIBLE);
                 FragmentManager manager = getFragmentManager();
                 manager.beginTransaction()
-                        .replace(R.id.activityhomelayout, fragmentLogin).commit();
+                        .replace(R.id.fragmentContainer, fragmentLogin).commit();
+//                FragmentManager manager = getFragmentManager();
+//                manager.beginTransaction()
+//                        .replace(R.id.activityhomelayout, fragmentLogin).commit();
             }
         });
 
@@ -78,10 +81,6 @@ public class RegistrationFragment extends Fragment {
                     long val = db.addUser(email, password, pin);
                     if (val > 0) {
                         getFragmentManager().beginTransaction().remove(RegistrationFragment.this).commitAllowingStateLoss();
-                        homeActivity=getActivity().findViewById(R.id.relLayout2);
-                        homeActivity1=getActivity().findViewById(R.id.relLayout1);
-                        homeActivity1.setVisibility(View.VISIBLE);
-                        homeActivity.setVisibility(View.VISIBLE);
                     }
                 } else {
                     Toast.makeText(getActivity(), "Pin is empty!!", Toast.LENGTH_SHORT).show();

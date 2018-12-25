@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/frag_containerRegistartion"
+    android:background="#81ae04"
+
     >
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#81ae04"
         android:orientation="vertical">
 
         <TextView

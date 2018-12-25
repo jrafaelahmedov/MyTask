@@ -63,6 +63,7 @@ public class LoginFragment extends Fragment {
                 FragmentManager manager = getFragmentManager();
                 manager.beginTransaction()
                         .replace(R.id.fragmentContainer, fragmentRegistration).commit();
+                getFragmentManager().beginTransaction().remove(LoginFragment.this).commitAllowingStateLoss();
             }
         });
 

@@ -3,13 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/loginFragment">
+    android:id="@+id/loginFragment"
+    android:background="#81ae04"
+
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#81ae04">
+        >
 
         <TextView
             android:id="@+id/textView"
@@ -32,7 +35,8 @@
             android:hint="Email"
             android:paddingLeft="5dp"
             android:inputType="textEmailAddress"
-            android:background="#fff"/>
+            android:background="#fff"
+            />
 
 
         <EditText
@@ -74,7 +78,7 @@
 
 
         <CheckBox
-            android:layout_width="30dp"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_toEndOf="@id/btnLogin"
             android:layout_below="@id/inputPasswordLogin"

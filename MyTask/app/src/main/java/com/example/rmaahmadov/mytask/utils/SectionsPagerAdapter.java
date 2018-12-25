@@ -5,11 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.rmaahmadov.mytask.fragments.HomeNewsFragent;
+import com.example.rmaahmadov.mytask.fragments.HomeNewsFragment;
 import com.example.rmaahmadov.mytask.fragments.SportNewsFragment;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
@@ -24,7 +21,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                HomeNewsFragent homeNewsFragent = new HomeNewsFragent();
+                HomeNewsFragment homeNewsFragent = new HomeNewsFragment();
                 return homeNewsFragent;
 
             case 1:

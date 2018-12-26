@@ -1,8 +1,10 @@
 package com.example.rmaahmadov.mytask.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,6 +14,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -27,6 +30,7 @@ public class PinFragment extends Fragment {
     DatabaseHelper db;
     ViewPager mViewPager;
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    AppBarLayout appBarLayout;
 
 
     @Nullable
@@ -35,6 +39,7 @@ public class PinFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pin, container, false);
         loginPin = view.findViewById(R.id.login_pin);
         mProgressbar = view.findViewById(R.id.progressBarPin);
+        appBarLayout=getActivity().findViewById(R.id.appbar);
         mProgressbar.setVisibility(View.GONE);
         db = new DatabaseHelper(getActivity());
         loginPin.addTextChangedListener(new TextWatcher() {
@@ -52,6 +57,7 @@ public class PinFragment extends Fragment {
                     if (res == true) {
                         Toast.makeText(getActivity(), "Welcome", Toast.LENGTH_LONG).show();
                         getFragmentManager().beginTransaction().remove(PinFragment.this).commitAllowingStateLoss();
+                        closeKeyboard();
                         setupViewPager();
                     } else{
                         Toast.makeText(getActivity(), "Email or Password invalid!!", Toast.LENGTH_LONG).show();
@@ -71,8 +77,18 @@ public class PinFragment extends Fragment {
     private void setupViewPager() {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
         mViewPager = getActivity().findViewById(R.id.container);
+        mViewPager.setVisibility(View.VISIBLE);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         TabLayout tabLayout = getActivity().findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+        appBarLayout.setVisibility(View.VISIBLE);
+    }
+
+    private void closeKeyboard(){
+        View view =this.getActivity().getCurrentFocus();
+        if(view!=null){
+            InputMethodManager imput =(InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imput.hideSoftInputFromWindow(view.getWindowToken(),0);
+        }
     }
 }

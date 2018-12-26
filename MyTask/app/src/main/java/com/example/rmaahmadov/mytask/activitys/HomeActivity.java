@@ -6,9 +6,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -21,14 +22,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 
 import com.example.rmaahmadov.mytask.R;
-import com.example.rmaahmadov.mytask.fragments.HomeNewsFragment;
 import com.example.rmaahmadov.mytask.fragments.LoginFragment;
 import com.example.rmaahmadov.mytask.fragments.PinFragment;
 import com.example.rmaahmadov.mytask.utils.DatabaseHelper;
-import com.example.rmaahmadov.mytask.utils.SectionsPagerAdapter;
 
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,6 +36,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     DatabaseHelper db;
     PinFragment fragmentPin;
     ViewPager mViewPager;
+    AppBarLayout appBarLayout;
     private DrawerLayout mDrawerLayout;
     TabLayout tabLayout;
 
@@ -51,29 +52,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    public void createLoginFragment() {
+    public void createLoginFragment(Fragment fragment) {
+        appBarLayout.setVisibility(View.GONE);
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction()
-                .add(R.id.activityhomelayout, fragment).commit();
+                .add(R.id.fragmentContainer, fragment).commit();
 
     }
 
-
-    @Override
-    public void onBackPressed() {
-        int fragments = getFragmentManager().getBackStackEntryCount();
-
-        DrawerLayout drawer =  findViewById(R.id.activityhomelayout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-        if (fragments == 1) {
-            this.finish();
-        }
-        super.onBackPressed();
-    }
 
 
     private void controlUser() {
@@ -83,24 +69,25 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if (db.checkUserAndMovePinPage(email, password)) {
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction().replace(R.id.activityhomelayout, fragmentPin).commit();
+            appBarLayout.setVisibility(View.VISIBLE);
 
         } else {
             fragment = new LoginFragment();
-            createLoginFragment();
+            createLoginFragment(fragment);
         }
     }
 
 
     private void createMenuSlider() {
-        Toolbar toolbar =  findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer =  findViewById(R.id.activityhomelayout);
+        DrawerLayout drawer = findViewById(R.id.activityhomelayout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.open, R.string.close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView =  findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.bringToFront();
     }
@@ -112,6 +99,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
     private void setupInit() {
+        appBarLayout=findViewById(R.id.appbar);
         mDrawerLayout = findViewById(R.id.activityhomelayout);
         mViewPager = findViewById(R.id.container);
         tabLayout = findViewById(R.id.tabs);
@@ -124,8 +112,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.drawermenuAbout) {
-         Intent intent = new Intent(this,AboutUsActivity.class);
-         startActivity(intent);
+            Intent intent = new Intent(this, AboutUsActivity.class);
+            startActivity(intent);
         } else if (id == R.id.drawermenuContact) {
 
             alertCallUs();
@@ -178,9 +166,26 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private void logOut() {
         SharedPreferences preferences = getSharedPreferences("SavedUser", Context.MODE_PRIVATE);
         preferences.edit().clear().commit();
-        fragment = new LoginFragment();
-        createLoginFragment();
-        mViewPager.removeAllViews();
+
+
+        FragmentManager fm =getSupportFragmentManager();
+        if(fm.getBackStackEntryCount()>0) {
+            fm.popBackStack();
+        }
+
+
+
+        createLoginFragment(new LoginFragment());
+//        mViewPager.removeAllViews();
+        mViewPager.setVisibility(View.GONE);
         tabLayout.removeAllTabs();
+
+    }
+
+    public void closeKeyboard(View view){
+        if(view!=null){
+            InputMethodManager imput =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imput.hideSoftInputFromWindow(view.getWindowToken(),0);
+        }
     }
 }

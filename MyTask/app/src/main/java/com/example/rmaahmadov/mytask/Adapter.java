@@ -125,7 +125,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         @Override
         @Nullable
         public void onClick(View v) {
-            myInterface.setOnclick(v, getAdapterPosition());
+            myInterface.setOnclick(getAdapterPosition());
         }
     }
 }

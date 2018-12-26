@@ -1,36 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
-    android:background="@color/blue">
+
+    android:background="#6897bb">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarHomeActivity"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:background="@color/blue"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:title="About">
+    </android.support.v7.widget.Toolbar>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="100dp"
+        android:layout_gravity="center"
+        android:id="@+id/rellayout1"
+        android:layout_below="@id/toolbarHomeActivity">
 
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnCloseAbout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:text="Version: 1.05" />
+        android:layout_marginTop="30dp"
+        android:text="Version: 1.00" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_below="@id/text"
             android:layout_centerInParent="true"
-            android:text="This app created by BankOfBaku" />
+            android:text="This app created by Rafael Ahmedov" />
 
-        <Button
-            android:id="@+id/btnCloseAbout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:onClick="closeActivity"
-            android:layout_marginTop="0dp"
-            android:background="@color/white"
-            android:text="close" />
-
+    </RelativeLayout>
 
 </RelativeLayout>

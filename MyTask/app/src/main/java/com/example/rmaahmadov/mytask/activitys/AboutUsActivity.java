@@ -1,31 +1,34 @@
 package com.example.rmaahmadov.mytask.activitys;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.example.rmaahmadov.mytask.R;
+import com.example.rmaahmadov.mytask.fragments.NewTabFragment;
 
 
 public class AboutUsActivity extends AppCompatActivity {
+
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aboutus);
-
-//               findViewById(R.id.coordinatorLayoutHomeActivity).setVisibility(View.VISIBLE);
+        toolbar=findViewById(R.id.toolbarHomeActivity);
+        setSupportActionBar(toolbar);
+        getSupportActionBar()
+                .setDisplayHomeAsUpEnabled(true);
     }
 
 
-
-    public void closeActivity(View view){
-        AboutUsActivity.this.finish();
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return true;
     }
 }

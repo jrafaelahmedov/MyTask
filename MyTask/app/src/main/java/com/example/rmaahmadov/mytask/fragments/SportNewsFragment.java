@@ -3,12 +3,14 @@ package com.example.rmaahmadov.mytask.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.rmaahmadov.mytask.Adapter;
@@ -34,6 +36,7 @@ public class SportNewsFragment extends Fragment implements MyInterface {
     private List<Article> articles = new ArrayList<>();
     private Adapter adapter;
     Call<News> call;
+    ProgressBar progressBar;
 
     @Nullable
     @Override
@@ -44,11 +47,13 @@ public class SportNewsFragment extends Fragment implements MyInterface {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setNestedScrollingEnabled(false);
+        progressBar=view.findViewById(R.id.progressSportNews);
         loadJson();
         return view;
     }
 
     public void loadJson(){
+        progressBar.setVisibility(View.VISIBLE);
         ApiInterface apiInterface =ApiClient.getApiClient().create(ApiInterface.class);
 
 
@@ -65,7 +70,7 @@ public class SportNewsFragment extends Fragment implements MyInterface {
                     adapter=new Adapter(articles,getActivity(), SportNewsFragment.this);
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
-
+                    progressBar.setVisibility(View.GONE);
                 }else {
                     Toast.makeText(getActivity(),"No Result" , Toast.LENGTH_LONG).show();
                 }
@@ -79,7 +84,14 @@ public class SportNewsFragment extends Fragment implements MyInterface {
     }
 
     @Override
-    public void setOnclick(View v,int pozition) {
+    public void setOnclick(int position) {
+        Fragment fragment = new NewTabFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("HomeNews", articles.get(position));
+        fragment.setArguments(bundle);
+        FragmentManager manager = getActivity().getSupportFragmentManager();
 
+        manager.beginTransaction().addToBackStack(null)
+                .add(R.id.activityhomelayout, fragment,"newTab").commit();
     }
 }

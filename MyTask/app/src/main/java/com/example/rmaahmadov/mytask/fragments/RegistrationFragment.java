@@ -11,9 +11,12 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,12 +38,17 @@ public class RegistrationFragment extends Fragment {
     ViewPager mViewPager;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     AppBarLayout appBarLayout;
+    Animation upToDown,downtoup;
+    LinearLayout linearLayoutUpToDown,linearLayoutDownToUp;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_registration, container, false);
+        linearLayoutDownToUp=view.findViewById(R.id.linearLayoutDowntoUp);
+        linearLayoutUpToDown=view.findViewById(R.id.linearLayoutUpToDown);
+
         mEmail = view.findViewById(R.id.inputEmailRegistration);
         mPassword = view.findViewById(R.id.inputPasswordRegistration);
         mPin = view.findViewById(R.id.inputPin);
@@ -52,6 +60,12 @@ public class RegistrationFragment extends Fragment {
         fragmentRegistration = new RegistrationFragment();
         fragmentLogin = new LoginFragment();
         db = new DatabaseHelper(getActivity());
+
+
+        upToDown=AnimationUtils.loadAnimation(getActivity(),R.anim.uptodown);
+        linearLayoutUpToDown.setAnimation(upToDown);
+        downtoup=AnimationUtils.loadAnimation(getActivity(),R.anim.downtoup);
+        linearLayoutDownToUp.setAnimation(downtoup);
 
 
         moveToLogin.setOnClickListener(new View.OnClickListener() {

@@ -14,10 +14,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -40,12 +43,16 @@ public class LoginFragment extends Fragment {
     PinFragment fragmentPin;
     CheckBox checkBoxLogin;
     AppBarLayout appBarLayout;
-
+    Animation upToDown,downtoup;
+    LinearLayout linearLayoutUpToDown,linearLayoutDownToUp;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
+        linearLayoutDownToUp=view.findViewById(R.id.linearLayoutDowntoUp);
+        linearLayoutUpToDown=view.findViewById(R.id.linearLayoutUpToDown);
+
         mEmail = view.findViewById(R.id.inputEmailLogin);
         mPassword = view.findViewById(R.id.inputPasswordLogin);
         btnLogin = view.findViewById(R.id.btnLogin);
@@ -58,6 +65,13 @@ public class LoginFragment extends Fragment {
         fragmentLogin = new LoginFragment();
         fragmentPin = new PinFragment();
         mProgressbar.setVisibility(View.GONE);
+
+
+
+        upToDown=AnimationUtils.loadAnimation(getActivity(),R.anim.uptodown);
+        linearLayoutUpToDown.setAnimation(upToDown);
+        downtoup=AnimationUtils.loadAnimation(getActivity(),R.anim.downtoup);
+        linearLayoutDownToUp.setAnimation(downtoup);
 
 
         moveToRegistartion.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +106,7 @@ public class LoginFragment extends Fragment {
                     FragmentManager manager = getFragmentManager();
                     manager.beginTransaction()
                             .replace(R.id.activityhomelayout, fragmentPin).commit();
-                    getFragmentManager().beginTransaction().remove(LoginFragment.this).commitAllowingStateLoss();
+//                    getFragmentManager().beginTransaction().remove(LoginFragment.this).commitAllowingStateLoss();
 //                    fragmentLogin.onDestroy();
                 } else {
                     Toast.makeText(getActivity(), "Email or Password invalid!!", Toast.LENGTH_LONG).show();

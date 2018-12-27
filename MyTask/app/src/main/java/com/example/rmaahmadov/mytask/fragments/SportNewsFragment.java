@@ -14,9 +14,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.rmaahmadov.mytask.Adapter;
-import com.example.rmaahmadov.mytask.MyInterface;
+import com.example.rmaahmadov.mytask.Interfaces.MyInterface;
 import com.example.rmaahmadov.mytask.R;
-import com.example.rmaahmadov.mytask.Utils;
 import com.example.rmaahmadov.mytask.api.ApiClient;
 import com.example.rmaahmadov.mytask.api.ApiInterface;
 import com.example.rmaahmadov.mytask.models.Article;
@@ -72,13 +71,14 @@ public class SportNewsFragment extends Fragment implements MyInterface {
                     adapter.notifyDataSetChanged();
                     progressBar.setVisibility(View.GONE);
                 }else {
-                    Toast.makeText(getActivity(),"No Result" , Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getActivity(),"No Result" , Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "No Internet Connection!", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<News> call, Throwable t) {
-                Toast.makeText(getActivity(),"No Result" , Toast.LENGTH_LONG).show();
+//                Toast.makeText(getActivity(),"No Result" , Toast.LENGTH_LONG).show();
             }
         });
     }

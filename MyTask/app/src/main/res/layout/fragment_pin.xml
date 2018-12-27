@@ -1,44 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#243037"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/frag_containerPin"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#243037">
 
-    
-    <TextView
-        android:id="@+id/textView"
-        android:layout_marginTop="150dp"
+
+    <RelativeLayout
+        android:id="@+id/edittextlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="center_horizontal"
+            android:text="PLEASE ENTER PIN"
+            android:textColor="#FFF8DC"
+            android:textSize="35sp" />
+
+
+        <EditText
+            android:id="@+id/login_pin"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/textView"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/round_white"
+            android:gravity="center"
+            android:inputType="numberPassword"
+            android:maxLength="4"
+            android:text=""
+            android:textAlignment="center" />
+
+    </RelativeLayout>
+
+
+    <com.example.rmaahmadov.mytask.utils.MyKeyboard
+        android:layout_below="@+id/edittextlayout"
+        android:id="@+id/keyboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="PLEASE ENTER PIN"
-        android:textColor="#FFF8DC"
-        android:textSize="35sp"
-        android:gravity="center_horizontal"
-        />
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        >
 
 
 
-    <EditText
-        android:id="@+id/login_pin"
-        android:layout_marginTop="50dp"
-        android:layout_centerInParent="true"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:maxLength="4"
-        android:paddingLeft="5dp"
-        android:hint="Pin"
-        android:text="1234"
-        android:inputType="numberPassword" 
-        android:background="@color/white"
-        android:layout_below="@id/textView"/>
+    </com.example.rmaahmadov.mytask.utils.MyKeyboard>
+
 
     <ProgressBar
+        android:id="@+id/progressBarPin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:id="@+id/progressBarPin"/>
-    
-    
+        android:visibility="gone"/>
+
+
 </RelativeLayout>

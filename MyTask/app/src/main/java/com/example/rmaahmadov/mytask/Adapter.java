@@ -2,7 +2,6 @@ package com.example.rmaahmadov.mytask;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +20,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.example.rmaahmadov.mytask.Interfaces.MyInterface;
 import com.example.rmaahmadov.mytask.models.Article;
 
 import java.util.List;
@@ -33,10 +33,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     private OnItemClickListener onItemClickListener;
 
 
-    public Adapter(List<Article> articles, Context mContex, MyInterface myInterface) {
+    public Adapter(List<Article> articles, Context mContex, MyInterface myInterface2) {
         this.articles = articles;
         this.mContex = mContex;
-        this.myInterface = myInterface;
+        this.myInterface = myInterface2;
     }
 
     @NonNull

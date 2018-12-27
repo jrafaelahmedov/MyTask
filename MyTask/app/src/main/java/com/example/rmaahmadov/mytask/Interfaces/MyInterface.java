@@ -1,4 +1,4 @@
-package com.example.rmaahmadov.mytask;
+package com.example.rmaahmadov.mytask.Interfaces;
 
 
 public  interface MyInterface  {

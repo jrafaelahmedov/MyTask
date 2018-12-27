@@ -8,11 +8,23 @@
 
     >
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/linearLayoutUpToDown"
+            >
+
 
         <TextView
             android:id="@+id/textView"
@@ -27,12 +39,14 @@
 
         <EditText
             android:id="@+id/inputEmailRegistration"
-            android:layout_width="250dp"
-            android:layout_height="30dp"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
             android:layout_below="@id/textView"
             android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="50dp"
-            android:background="@color/white"
+            android:background="@drawable/round_white"
+            android:paddingStart="10dp"
             android:paddingLeft="5dp"
             android:hint="Email"
             android:inputType="textEmailAddress" />
@@ -40,12 +54,14 @@
 
         <EditText
             android:id="@+id/inputPasswordRegistration"
-            android:layout_width="250dp"
-            android:layout_height="30dp"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
             android:layout_below="@id/inputEmailRegistration"
             android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
             android:background="@color/white"
+            android:paddingStart="10dp"
             android:paddingLeft="5dp"
             android:hint="Password"
             android:inputType="textPassword" />
@@ -53,36 +69,64 @@
 
         <EditText
             android:id="@+id/inputPin"
-            android:layout_width="250dp"
-            android:layout_height="30dp"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
             android:layout_below="@id/inputPasswordRegistration"
             android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
             android:maxLength="4"
+            android:paddingStart="10dp"
             android:paddingLeft="5dp"
             android:background="@color/white"
             android:hint="Pin (Maximum 4 number)"
             android:inputType="numberPassword" />
 
 
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayoutDowntoUp"
+        android:orientation="vertical"
+        android:layout_below="@id/linearLayoutUpToDown">
+
+
         <Button
             android:id="@+id/btnRegistration"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:layout_below="@id/inputPin"
             android:layout_centerInParent="true"
-            android:layout_marginTop="3dp"
-            android:background="@color/white"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="65dp"
+            android:layout_gravity="center_horizontal"
+            android:paddingRight="65dp"
+            android:background="@drawable/round_white_forbutton"
             android:onClick="signUp"
-            android:text="Sign up" />
+            android:text="Sign up"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtToSwichUpLoginPage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/btnRegistration"
+            android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:text="Have an account?"
+            android:layout_marginTop="10dp"
             android:textColor="@color/white"
             android:textSize="25sp" />
 
@@ -90,13 +134,18 @@
             android:id="@+id/textViewMoveToLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_below="@id/txtToSwichUpLoginPage"
             android:layout_centerInParent="true"
+            android:layout_marginTop="5dp"
             android:text="Sign in"
             android:onClick="moveToSignIn"
             android:textColor="#40e0d0"
             android:textStyle="bold"
             android:textSize="20dp" />
+
+    </LinearLayout>
+
 
         <ProgressBar
             android:id="@+id/progressBarRegistration"

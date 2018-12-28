@@ -4,11 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -17,9 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -52,63 +48,21 @@ public class NewTabFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_newtab, container, false);
         getDataParcelable();
         timeNewsTab = view.findViewById(R.id.timeHomeNews);
-
         toolbar = view.findViewById(R.id.toolbarNewTab);
-
-
         titleNewsTab = view.findViewById(R.id.titleHomeNews);
         authorNewsTab = view.findViewById(R.id.authorNewTab);
         publishedAtNewsTab = view.findViewById(R.id.publishedAtHomeNews);
         contentNewTabs = view.findViewById(R.id.contentNewTabs);
         imageViewNewTab = view.findViewById(R.id.imgHomeNews);
         progressBar = view.findViewById(R.id.progress_load_photo);
-        authorNewsTab.setText(author);
-
-        titleNewsTab.setText(title);
-
-
-        publishedAtNewsTab.setText(Utils.DateFormat(publishedAt));
-        timeNewsTab.setText("\u2022" + Utils.DateToTimeFormat(publishedAt));
-
-
-        if (content == null) {
-            contentNewTabs.setText("No Content");
-        } else {
-            contentNewTabs.setText(content);
-        }
-        RequestOptions requestOptions = new RequestOptions();
-        requestOptions.placeholder(Utils.getRandomDrawbleColor());
-        requestOptions.error(Utils.getRandomDrawbleColor());
-        requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
-        requestOptions.centerCrop();
-
-        Glide.with(getActivity())
-                .load(urlToImage)
-                .apply(requestOptions)
-                .listener(new RequestListener<Drawable>() {
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                        progressBar.setVisibility(View.GONE);
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                        progressBar.setVisibility(View.GONE);
-                        return false;
-                    }
-                })
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .into(imageViewNewTab);
+        setAllContent();
         createMenuSlider();
-
-
         //appbar back button
         setHasOptionsMenu(true);
-
-
         return view;
     }
+
+
 
 
     public void getDataParcelable() {
@@ -121,7 +75,6 @@ public class NewTabFragment extends Fragment {
                 urlToImage = article.getUrlToImage();
                 publishedAt = article.getPublishedAt();
                 content = article.getContent();
-//                mArticle=article.getPublishedAt();
             } else {
                 Toast.makeText(getActivity(), "No result,Article null ", Toast.LENGTH_LONG).show();
             }
@@ -130,12 +83,59 @@ public class NewTabFragment extends Fragment {
         }
     }
 
+
+
+
+
+    public void setAllContent() {
+        authorNewsTab.setText(author);
+        titleNewsTab.setText(title);
+        publishedAtNewsTab.setText(Utils.DateFormat(publishedAt));
+        timeNewsTab.setText("\u2022" + Utils.DateToTimeFormat(publishedAt));
+        if (content == null) {
+            contentNewTabs.setText("No Content");
+        } else {
+            contentNewTabs.setText(content);
+        }
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.placeholder(Utils.getRandomDrawbleColor());
+        requestOptions.error(Utils.getRandomDrawbleColor());
+        requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
+        requestOptions.centerCrop();
+        Glide.with(getActivity())
+                .load(urlToImage)
+                .apply(requestOptions)
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        progressBar.setVisibility(View.GONE);
+                        return false;
+                    }
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        progressBar.setVisibility(View.GONE);
+                        return false;
+                    }
+                })
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(imageViewNewTab);
+    }
+
+
+
+
+
     //appbar back button
     @SuppressLint("RestrictedApi")
     private void createMenuSlider() {
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

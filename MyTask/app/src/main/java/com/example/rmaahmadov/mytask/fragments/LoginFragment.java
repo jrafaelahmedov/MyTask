@@ -2,15 +2,13 @@ package com.example.rmaahmadov.mytask.fragments;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,14 +20,11 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rmaahmadov.mytask.R;
 import com.example.rmaahmadov.mytask.utils.DatabaseHelper;
-
-import java.net.ConnectException;
 
 public class LoginFragment extends Fragment {
 
@@ -42,7 +37,6 @@ public class LoginFragment extends Fragment {
     LoginFragment fragmentLogin;
     PinFragment fragmentPin;
     CheckBox checkBoxLogin;
-    AppBarLayout appBarLayout;
     Animation upToDown,downtoup;
     LinearLayout linearLayoutUpToDown,linearLayoutDownToUp;
 
@@ -52,27 +46,24 @@ public class LoginFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         linearLayoutDownToUp=view.findViewById(R.id.linearLayoutDowntoUp);
         linearLayoutUpToDown=view.findViewById(R.id.linearLayoutUpToDown);
-
         mEmail = view.findViewById(R.id.inputEmailLogin);
         mPassword = view.findViewById(R.id.inputPasswordLogin);
         btnLogin = view.findViewById(R.id.btnLogin);
         mProgressbar = view.findViewById(R.id.progressBarLogin);
-        appBarLayout=getActivity().findViewById(R.id.appbar);
         checkBoxLogin = view.findViewById(R.id.checkboxLogin);
         moveToRegistartion = view.findViewById(R.id.textViewMoveToRegistration);
-        db = new DatabaseHelper(getActivity());
-        fragmentRegistration = new RegistrationFragment();
-        fragmentLogin = new LoginFragment();
-        fragmentPin = new PinFragment();
+        utils();
+        loadAnimation();
+        return view;
+    }
+
+
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         mProgressbar.setVisibility(View.GONE);
-
-
-
-        upToDown=AnimationUtils.loadAnimation(getActivity(),R.anim.uptodown);
-        linearLayoutUpToDown.setAnimation(upToDown);
-        downtoup=AnimationUtils.loadAnimation(getActivity(),R.anim.downtoup);
-        linearLayoutDownToUp.setAnimation(downtoup);
-
 
         moveToRegistartion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,23 +97,43 @@ public class LoginFragment extends Fragment {
                     FragmentManager manager = getFragmentManager();
                     manager.beginTransaction()
                             .replace(R.id.activityhomelayout, fragmentPin).commit();
-//                    getFragmentManager().beginTransaction().remove(LoginFragment.this).commitAllowingStateLoss();
-//                    fragmentLogin.onDestroy();
                 } else {
                     Toast.makeText(getActivity(), "Email or Password invalid!!", Toast.LENGTH_LONG).show();
                 }
                 mProgressbar.setVisibility(View.GONE);
             }
         });
-        return view;
     }
+
+
+
+
+
+    public void utils(){
+        fragmentRegistration = new RegistrationFragment();
+        fragmentLogin = new LoginFragment();
+        fragmentPin = new PinFragment();
+        db = new DatabaseHelper(getActivity());
+    }
+
+
+
+
+    public void loadAnimation(){
+        upToDown=AnimationUtils.loadAnimation(getActivity(),R.anim.uptodown);
+        downtoup=AnimationUtils.loadAnimation(getActivity(),R.anim.downtoup);
+        linearLayoutUpToDown.setAnimation(downtoup);
+        linearLayoutDownToUp.setAnimation(downtoup);
+    }
+
+
 
 
     private void closeKeyboard(){
         View view =this.getActivity().getCurrentFocus();
         if(view!=null){
-            InputMethodManager imput =(InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-            imput.hideSoftInputFromWindow(view.getWindowToken(),0);
+            InputMethodManager input =(InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            input.hideSoftInputFromWindow(view.getWindowToken(),0);
         }
     }
 

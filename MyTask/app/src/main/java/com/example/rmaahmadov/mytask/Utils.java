@@ -13,6 +13,8 @@ import java.util.Random;
 
 public class Utils {
 
+
+
     public static ColorDrawable[] vibrantLightColorList =
             {
                     new ColorDrawable(Color.parseColor("#ffeead")),
@@ -25,10 +27,20 @@ public class Utils {
                     new ColorDrawable(Color.parseColor("#d93947"))
             };
 
+
+
+
+
     public static ColorDrawable getRandomDrawbleColor() {
         int idx = new Random().nextInt(vibrantLightColorList.length);
         return vibrantLightColorList[idx];
     }
+
+
+
+
+
+
 
     public static String DateToTimeFormat(String oldstringDate){
         PrettyTime p = new PrettyTime(new Locale(getCountry()));
@@ -45,6 +57,10 @@ public class Utils {
         return isTime;
     }
 
+
+
+
+
     public static String DateFormat(String oldstringDate){
         String newDate;
         SimpleDateFormat dateFormat = new SimpleDateFormat("E, d MMM yyyy", new Locale(getCountry()));
@@ -58,6 +74,10 @@ public class Utils {
 
         return newDate;
     }
+
+
+
+
 
     public static String getCountry(){
         Locale locale = Locale.getDefault();

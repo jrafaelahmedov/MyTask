@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
 
-    android:background="#6897bb">
+    android:background="#fff">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbarHomeActivity"
@@ -22,7 +22,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="100dp"
         android:layout_gravity="center"
         android:id="@+id/rellayout1"
@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
+        android:textSize="20sp"
         android:text="Version: 1.00" />
 
         <TextView
@@ -43,8 +44,34 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:layout_below="@id/text"
+            android:textSize="20sp"
             android:layout_centerInParent="true"
             android:text="This app created by Rafael Ahmedov" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView2"
+            android:id="@+id/textView3"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:text="Where we are?"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView3"
+            android:layout_centerInParent="true"
+            android:text="Click Here"
+            android:onClick="findLocation"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/blue"
+            />
+
 
     </RelativeLayout>
 

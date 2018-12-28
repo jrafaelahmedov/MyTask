@@ -30,7 +30,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     private List<Article> articles;
     private Context mContex;
     private MyInterface myInterface;
-    private OnItemClickListener onItemClickListener;
+
 
 
     public Adapter(List<Article> articles, Context mContex, MyInterface myInterface2) {
@@ -39,12 +39,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         this.myInterface = myInterface2;
     }
 
+
+
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View view = LayoutInflater.from(mContex).inflate(R.layout.item, parent, false);
         return new MyViewHolder(view);
     }
+
+
+
+
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holders, int i) {
@@ -55,8 +62,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         requestOptions.error(Utils.getRandomDrawbleColor());
         requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
         requestOptions.centerCrop();
-
-
         Glide.with(mContex)
                 .load(model.getUrlToImage())
                 .apply(requestOptions)
@@ -85,29 +90,22 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     }
 
+
+
+
+
     @Override
     public int getItemCount() {
-
         return articles.size();
     }
 
-    @Nullable
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
-    }
 
 
-    public interface OnItemClickListener {
-        void onItemClick(View view, int position);
-    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
         TextView title, desc, author, published_ad, source, time;
         ImageView imageView;
         ProgressBar progressBar;
-        OnItemClickListener onItemClickListener;
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
@@ -121,7 +119,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             itemView.setOnClickListener(this);
             //this.onItemClickListener=onItemClickListener;
         }
-
         @Override
         @Nullable
         public void onClick(View v) {

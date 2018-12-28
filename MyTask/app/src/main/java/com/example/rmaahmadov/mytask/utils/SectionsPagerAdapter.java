@@ -10,12 +10,13 @@ import com.example.rmaahmadov.mytask.fragments.SportNewsFragment;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    private static final String TAG = "SectionsPagerAdapter";
-//    private final List<Fragment> mFragmentList= new ArrayList<>();
 
     public SectionsPagerAdapter(FragmentManager fm) {
         super(fm);
     }
+
+
+
 
     @Override
     public Fragment getItem(int position) {
@@ -33,10 +34,19 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         }
     }
 
+
+
+
+
+
     @Override
     public int getCount() {
         return 2;
     }
+
+
+
+
 
 
     @Nullable

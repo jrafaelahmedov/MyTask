@@ -3,7 +3,8 @@
     android:id="@+id/frag_containerPin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#243037">
+    android:background="#243037"
+    >
 
 
     <RelativeLayout
@@ -29,6 +30,7 @@
             android:layout_below="@id/textView"
             android:layout_centerInParent="true"
             android:layout_marginTop="50dp"
+            android:editable="false"
             android:background="@drawable/round_white"
             android:gravity="center"
             android:inputType="numberPassword"
@@ -45,20 +47,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_alignParentBottom="true"
-        >
-
-
-
-    </com.example.rmaahmadov.mytask.utils.MyKeyboard>
-
+        android:layout_alignParentBottom="true" />
 
     <ProgressBar
         android:id="@+id/progressBarPin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone"/>
+        android:indeterminateTint="@color/blue"
+
+        />
 
 
 </RelativeLayout>

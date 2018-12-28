@@ -17,20 +17,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_4 = "pin";
     
 
+
+
+
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
+
+
+
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE users (ID INTEGER PRIMARY KEY AUTOINCREMENT,email VARCHAR,password VARCHAR,pin NUMBER)");
     }
 
+
+
+
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
+
+
+
+
 
     public long addUser(String email, String password, int pin) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -42,6 +58,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return res;
     }
+
+
+
 
 
     public boolean checkUserAndMovePinPage(String username, String password) {
@@ -60,6 +79,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+
+
+
     public boolean checkUserPin(int pin){
         String[] colums = {COL_1};
         SQLiteDatabase db = getReadableDatabase();
@@ -74,6 +96,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
-    
-
 }

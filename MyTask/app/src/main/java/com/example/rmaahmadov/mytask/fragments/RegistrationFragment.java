@@ -63,8 +63,8 @@ public class RegistrationFragment extends Fragment {
         fragmentRegistration = new RegistrationFragment();
         fragmentLogin = new LoginFragment();
         db = new DatabaseHelper(getActivity());
-        upToDown=AnimationUtils.loadAnimation(getActivity(),R.anim.uptodown);
-        downtoup=AnimationUtils.loadAnimation(getActivity(),R.anim.downtoup);
+        upToDown=AnimationUtils.loadAnimation(getActivity(),R.anim.spashscreenanimation);
+        downtoup=AnimationUtils.loadAnimation(getActivity(),R.anim.spashscreenanimation);
         linearLayoutUpToDown.setAnimation(downtoup);
         linearLayoutDownToUp.setAnimation(downtoup);
         return view;

@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -130,6 +131,7 @@ public class SportNewsFragment extends Fragment implements MyInterface ,SwipeRef
         fragment.setArguments(bundle);
         FragmentManager manager = getActivity().getSupportFragmentManager();
         manager.beginTransaction().addToBackStack(null)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .add(R.id.activityhomelayout, fragment,"newTab").commit();
     }
 }

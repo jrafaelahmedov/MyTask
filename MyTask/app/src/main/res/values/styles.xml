@@ -1,4 +1,6 @@
-<resources>
+<resources
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -6,7 +8,6 @@
         <item name="colorPrimary">#243037</item>
         <item name="colorPrimaryDark">#243037</item>
         <item name="colorAccent">@color/colorAccent</item>
-
     </style>
 
 </resources>

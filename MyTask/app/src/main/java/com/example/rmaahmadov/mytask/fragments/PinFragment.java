@@ -14,11 +14,14 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.rmaahmadov.mytask.Interfaces.MyKeyboardClick;
@@ -37,6 +40,8 @@ public class PinFragment extends Fragment implements MyKeyboardClick{
     ViewPager mViewPager;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     AppBarLayout appBarLayout;
+    Animation animation;
+    RelativeLayout relativeLayout;
 
 
     @Nullable
@@ -44,9 +49,15 @@ public class PinFragment extends Fragment implements MyKeyboardClick{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pin, container, false);
         loginPin = view.findViewById(R.id.login_pin);
+        animation=AnimationUtils.loadAnimation(getActivity(),R.anim.spashscreenanimation);
+        relativeLayout=view.findViewById(R.id.edittextlayout);
+
+        relativeLayout.startAnimation(animation);
+
         loginPin.setShowSoftInputOnFocus(false);
         mProgressbar = view.findViewById(R.id.progressBarPin);
         MyKeyboard keyboard = view.findViewById(R.id.keyboard);
+        keyboard.startAnimation(animation);
         loginPin.setRawInputType(InputType.TYPE_CLASS_TEXT);
         loginPin.setTextIsSelectable(true);
         keyboard.setOnClickListener(this);

@@ -120,8 +120,8 @@ public class LoginFragment extends Fragment {
 
 
     public void loadAnimation(){
-        upToDown=AnimationUtils.loadAnimation(getActivity(),R.anim.uptodown);
-        downtoup=AnimationUtils.loadAnimation(getActivity(),R.anim.downtoup);
+        upToDown=AnimationUtils.loadAnimation(getActivity(),R.anim.spashscreenanimation);
+        downtoup=AnimationUtils.loadAnimation(getActivity(),R.anim.spashscreenanimation);
         linearLayoutUpToDown.setAnimation(downtoup);
         linearLayoutDownToUp.setAnimation(downtoup);
     }

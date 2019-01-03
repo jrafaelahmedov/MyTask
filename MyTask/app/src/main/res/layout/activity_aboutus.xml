@@ -17,62 +17,26 @@
         app:title="About">
     </android.support.v7.widget.Toolbar>
 
-
-
-    <RelativeLayout
+    <fragment
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="100dp"
-        android:layout_gravity="center"
-        android:id="@+id/rellayout1"
-        android:layout_below="@id/toolbarHomeActivity">
+        android:layout_height="match_parent"
+        android:id="@+id/map"
+        android:layout_below="@id/toolbarHomeActivity"
+        tools:content=".AboutUsActivity"
+        android:name="com.google.android.gms.maps.SupportMapFragment" />
 
-    <TextView
-        android:id="@+id/text"
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:textSize="20sp"
-        android:text="Version: 1.00" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_below="@id/text"
-            android:textSize="20sp"
-            android:layout_centerInParent="true"
-            android:text="This app created by Rafael Ahmedov" />
+        android:layout_alignBottom="@+id/map"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/cuurentLocationImage"
+        android:src="@mipmap/ic_location" />
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView2"
-            android:id="@+id/textView3"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
-            android:layout_centerInParent="true"
-            android:text="Where we are?"
-            />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView3"
-            android:layout_centerInParent="true"
-            android:text="Click Here"
-            android:onClick="findLocation"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/blue"
-            />
-
-
-    </RelativeLayout>
 
 </RelativeLayout>

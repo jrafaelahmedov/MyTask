@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">News</string>
+    <string name="mymapsapikey">AIzaSyBJPXfWmPCwcK98J5cXsNKxfXcd5pSgc0k</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
 </resources>

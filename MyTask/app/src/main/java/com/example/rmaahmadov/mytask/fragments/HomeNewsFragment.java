@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,6 +44,7 @@ public class HomeNewsFragment extends Fragment implements MyInterface ,SwipeRefr
     Call<News> call;
     ProgressBar progressBar;
     SwipeRefreshLayout swipeRefreshLayout;
+    Bundle bundle;
 
 
 
@@ -58,6 +60,7 @@ public class HomeNewsFragment extends Fragment implements MyInterface ,SwipeRefr
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setNestedScrollingEnabled(false);
         progressBar=view.findViewById(R.id.progressHomeNews);
+        bundle = new Bundle();
         loadJson();
         return view;
     }
@@ -127,11 +130,11 @@ public class HomeNewsFragment extends Fragment implements MyInterface ,SwipeRefr
     @Override
     public void setOnclick(int position) {
         Fragment fragment = new NewTabFragment();
-        Bundle bundle = new Bundle();
         bundle.putParcelable("HomeNews", articles.get(position));
         fragment.setArguments(bundle);
         FragmentManager manager = getActivity().getSupportFragmentManager();
         manager.beginTransaction().addToBackStack(null)
-                .add(R.id.activityhomelayout, fragment,"newTab").commit();
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .replace(R.id.container, fragment,"newTab").commit();
     }
 }

@@ -137,10 +137,10 @@ public class NewTabFragment extends Fragment {
 
 
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        getFragmentManager().beginTransaction().remove(NewTabFragment.this).commitAllowingStateLoss();
-        return true;
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        getFragmentManager().beginTransaction().remove(NewTabFragment.this).commitAllowingStateLoss();
+//        return true;
+//    }
 
 }

@@ -14,7 +14,7 @@
         android:layout_weight="1"
         android:background="@color/blue"
         app:layout_scrollFlags="scroll|enterAlways"
-        app:title="About">
+        app:title="Location">
     </android.support.v7.widget.Toolbar>
 
     <fragment
@@ -28,13 +28,13 @@
 
 
     <ImageView
+        android:id="@+id/cuurentLocationImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/map"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/cuurentLocationImage"
+        android:layout_alignTop="@+id/map"
+        android:layout_alignEnd="@+id/toolbarHomeActivity"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
         android:src="@mipmap/ic_location" />
 
 

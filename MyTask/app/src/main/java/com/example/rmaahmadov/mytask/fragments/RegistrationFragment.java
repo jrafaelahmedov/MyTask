@@ -84,7 +84,7 @@ public class RegistrationFragment extends Fragment {
                 mProgressbar.setVisibility(View.VISIBLE);
                 FragmentManager manager = getFragmentManager();
                 manager.beginTransaction()
-                        .replace(R.id.fragmentContainer, fragmentLogin).commit();
+                        .replace(R.id.activitymaincontainer, fragmentLogin).commit();
                 getFragmentManager().beginTransaction().remove(RegistrationFragment.this).commitAllowingStateLoss();
             }
         });

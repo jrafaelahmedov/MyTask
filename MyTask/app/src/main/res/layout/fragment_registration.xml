@@ -30,7 +30,7 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="60dp"
             android:gravity="center_horizontal"
             android:text="PLEASE SIGN UP"
             android:textColor="#FFF8DC"
@@ -59,7 +59,7 @@
             android:layout_below="@id/inputEmailRegistration"
             android:layout_centerInParent="true"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:background="@color/white"
             android:paddingStart="10dp"
             android:paddingLeft="5dp"
@@ -74,7 +74,7 @@
             android:layout_below="@id/inputPasswordRegistration"
             android:layout_centerInParent="true"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:maxLength="4"
             android:paddingStart="10dp"
             android:paddingLeft="5dp"
@@ -85,11 +85,6 @@
 
 
     </LinearLayout>
-
-
-
-
-
 
 
 
@@ -105,13 +100,13 @@
         <Button
             android:id="@+id/btnRegistration"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_below="@id/inputPin"
             android:layout_centerInParent="true"
-            android:layout_marginTop="15dp"
-            android:paddingLeft="65dp"
+            android:layout_marginTop="35dp"
+            android:paddingLeft="85dp"
             android:layout_gravity="center_horizontal"
-            android:paddingRight="65dp"
+            android:paddingRight="85dp"
             android:background="@drawable/round_white_forbutton"
             android:onClick="signUp"
             android:text="Sign up"

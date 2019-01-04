@@ -27,6 +27,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
@@ -77,12 +78,12 @@ public class AboutUsActivity extends AppCompatActivity implements OnMapReadyCall
                 location.addOnCompleteListener(new OnCompleteListener() {
                     @Override
                     public void onComplete(@NonNull Task task) {
+                        LatLng myLocation = new LatLng(40.4033198,49.8520721);
                         if (task.isSuccessful()&&task.getResult()!=null) {
-                            Location currentLocation = (Location) task.getResult();
-                            moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),DEFAULT_ZOOM);
+                            moveCamera(myLocation,DEFAULT_ZOOM);
+                            mMap.addMarker(new MarkerOptions().position(myLocation));
                         } else {
-
-
+                            Toast.makeText(AboutUsActivity.this,"Please open your location",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

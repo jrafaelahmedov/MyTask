@@ -34,7 +34,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class HomeNewsFragment extends Fragment implements MyInterface ,SwipeRefreshLayout.OnRefreshListener {
+public class HomeNewsFragment extends Fragment implements MyInterface, SwipeRefreshLayout.OnRefreshListener {
 
     public static final String API_KEY = "92273f4b31d247f8a4798c6bfc9f7713";
     private RecyclerView recyclerView;
@@ -47,25 +47,22 @@ public class HomeNewsFragment extends Fragment implements MyInterface ,SwipeRefr
     Bundle bundle;
 
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_homenews, container, false);
-        swipeRefreshLayout=view.findViewById(R.id.swipeHomeNews);
+        swipeRefreshLayout = view.findViewById(R.id.swipeHomeNews);
         swipeRefreshSetting();
         recyclerView = view.findViewById(R.id.recylerViewHomeNews);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setNestedScrollingEnabled(false);
-        progressBar=view.findViewById(R.id.progressHomeNews);
+        progressBar = view.findViewById(R.id.progressHomeNews);
         bundle = new Bundle();
         loadJson();
         return view;
     }
-
-
 
 
     @Override
@@ -74,7 +71,8 @@ public class HomeNewsFragment extends Fragment implements MyInterface ,SwipeRefr
         recyclerView.setVisibility(View.GONE);
 
         new Handler().postDelayed(new Runnable() {
-            @Override public void run() {
+            @Override
+            public void run() {
                 recyclerView.setVisibility(View.VISIBLE);
                 loadJson();
                 swipeRefreshLayout.setRefreshing(false);
@@ -83,17 +81,13 @@ public class HomeNewsFragment extends Fragment implements MyInterface ,SwipeRefr
     }
 
 
-
-
-    public void swipeRefreshSetting(){
+    public void swipeRefreshSetting() {
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorScheme(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
     }
-
-
 
 
     public void loadJson() {
@@ -116,6 +110,7 @@ public class HomeNewsFragment extends Fragment implements MyInterface ,SwipeRefr
                 } else {
                 }
             }
+
             @Override
             public void onFailure(Call<News> call, Throwable t) {
                 Toast.makeText(getActivity(), "No Internet Connection!", Toast.LENGTH_LONG).show();
@@ -125,16 +120,16 @@ public class HomeNewsFragment extends Fragment implements MyInterface ,SwipeRefr
     }
 
 
-
-
     @Override
     public void setOnclick(int position) {
         Fragment fragment = new NewTabFragment();
         bundle.putParcelable("HomeNews", articles.get(position));
         fragment.setArguments(bundle);
         FragmentManager manager = getActivity().getSupportFragmentManager();
+
         manager.beginTransaction().addToBackStack(null)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .replace(R.id.container, fragment,"newTab").commit();
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                .replace(R.id.activitymaincontainer, fragment, "newTab").commit();
     }
 }

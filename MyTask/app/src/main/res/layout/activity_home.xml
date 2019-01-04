@@ -12,12 +12,6 @@
     tools:openDrawer="start"
     >
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fragmentContainer"
-        android:onClick="closeKeyboard"
-        />
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
@@ -75,5 +69,17 @@
 
 
 </android.support.design.widget.CoordinatorLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/activitymaincontainer">
+
+    </FrameLayout>
+
+
+
+
 
 </android.support.v4.widget.DrawerLayout>

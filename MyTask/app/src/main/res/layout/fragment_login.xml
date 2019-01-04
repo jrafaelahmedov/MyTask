@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/loginFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,8 +13,6 @@
 
 
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,14 +21,11 @@
             >
 
 
-
-
-
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="60dp"
             android:gravity="center_horizontal"
             android:text="PLEASE SIGN IN"
             android:textColor="#FFF8DC"
@@ -60,7 +54,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_below="@id/inputEmailLogin"
             android:layout_centerInParent="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/round_white"
             android:hint="Password"
             android:inputType="textPassword"
@@ -68,16 +62,7 @@
             android:paddingLeft="5dp" />
 
 
-
-
-
-
-
         </LinearLayout>
-
-
-
-
 
 
 
@@ -86,6 +71,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/linearLayoutDowntoUp"
             android:orientation="vertical"
+            android:layout_marginTop="20dp"
             android:layout_below="@id/linearLayoutUpToDown">
 
 
@@ -94,13 +80,13 @@
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
             android:layout_below="@id/linearLayoutUpToDown"
             android:layout_centerInParent="true"
             android:layout_marginTop="15dp"
-            android:paddingLeft="65dp"
-            android:paddingRight="65dp"
+            android:paddingLeft="85dp"
+            android:paddingRight="85dp"
             android:background="@drawable/round_white_forbutton"
             android:onClick="signIn"
             android:text="Sign in"
@@ -120,7 +106,7 @@
             android:textStyle="bold"
             android:layout_centerInParent="true"
             android:layout_below="@id/btnLogin"
-            android:background="@color/white" />
+            android:background="@drawable/round_white" />
 
 
         <TextView
@@ -149,13 +135,7 @@
             android:textSize="20dp"
             android:textStyle="bold" />
 
-
-
-
         </LinearLayout>
-
-
-
 
 
     </RelativeLayout>

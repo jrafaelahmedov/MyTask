@@ -132,6 +132,6 @@ public class SportNewsFragment extends Fragment implements MyInterface ,SwipeRef
         FragmentManager manager = getActivity().getSupportFragmentManager();
         manager.beginTransaction().addToBackStack(null)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .add(R.id.activityhomelayout, fragment,"newTab").commit();
+                .add(R.id.activitymaincontainer, fragment,"newTab").commit();
     }
 }

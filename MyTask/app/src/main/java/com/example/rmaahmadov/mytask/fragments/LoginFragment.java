@@ -72,8 +72,8 @@ public class LoginFragment extends Fragment {
                 mProgressbar.setVisibility(View.VISIBLE);
                 FragmentManager manager = getFragmentManager();
                 manager.beginTransaction()
-                        .replace(R.id.fragmentContainer, fragmentRegistration).commit();
-                getFragmentManager().beginTransaction().remove(LoginFragment.this).commitAllowingStateLoss();
+                        .replace(R.id.activitymaincontainer, fragmentRegistration).commit();
+//                getFragmentManager().beginTransaction().remove(LoginFragment.this).commitAllowingStateLoss();
             }
         });
 
@@ -96,7 +96,7 @@ public class LoginFragment extends Fragment {
                     }
                     FragmentManager manager = getFragmentManager();
                     manager.beginTransaction()
-                            .replace(R.id.activityhomelayout, fragmentPin).commit();
+                            .replace(R.id.activitymaincontainer, fragmentPin).commit();
                 } else {
                     Toast.makeText(getActivity(), "Email or Password invalid!!", Toast.LENGTH_LONG).show();
                 }

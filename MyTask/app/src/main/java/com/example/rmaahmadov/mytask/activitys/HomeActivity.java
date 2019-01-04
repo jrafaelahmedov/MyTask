@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         appBarLayout.setVisibility(View.GONE);
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction()
-                .add(R.id.fragmentContainer, fragment).commit();
+                .add(R.id.activitymaincontainer, fragment).commit();
     }
 
 
@@ -68,7 +68,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         String password = preferences.getString("password", "");
         if (db.checkUserAndMovePinPage(email, password)) {
             FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.activityhomelayout, fragmentPin).commit();
+            manager.beginTransaction().replace(R.id.activitymaincontainer, fragmentPin).commit();
             appBarLayout.setVisibility(View.VISIBLE);
         } else {
             fragment = new LoginFragment();

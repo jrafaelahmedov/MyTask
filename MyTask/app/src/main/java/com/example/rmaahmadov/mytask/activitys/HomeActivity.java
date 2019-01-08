@@ -62,6 +62,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+
+
     private void controlUser() {
         SharedPreferences preferences = getSharedPreferences("SavedUser", Context.MODE_PRIVATE);
         String email = preferences.getString("email", "");
@@ -75,6 +77,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             createLoginFragment(fragment);
         }
     }
+
+
 
 
     private void createMenuSlider() {
@@ -91,10 +95,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+
+
+
     private void createNecessary() {
         fragmentPin = new PinFragment();
         db = new DatabaseHelper(this);
     }
+
+
+
+
 
 
     private void setupInit() {
@@ -103,6 +114,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         mViewPager = findViewById(R.id.container);
         tabLayout = findViewById(R.id.tabs);
     }
+
+
+
 
 
     @Override
@@ -121,6 +135,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+
 
 
     private void alertCallUs() {
@@ -153,6 +171,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+
+
+
+
     private void logOut() {
         SharedPreferences preferences = getSharedPreferences("SavedUser", Context.MODE_PRIVATE);
         preferences.edit().clear().commit();
@@ -166,10 +188,4 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    public void closeKeyboard(View view) {
-        if (view != null) {
-            InputMethodManager input = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            input.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-    }
 }

@@ -5,6 +5,9 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -57,10 +60,10 @@ public class NewTabFragment extends Fragment {
         progressBar = view.findViewById(R.id.progress_load_photo);
         setAllContent();
         createMenuSlider();
-        //appbar back button
-        setHasOptionsMenu(true);
         return view;
     }
+
+
 
 
 
@@ -111,6 +114,7 @@ public class NewTabFragment extends Fragment {
                         progressBar.setVisibility(View.GONE);
                         return false;
                     }
+
                     @Override
                     public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                         progressBar.setVisibility(View.GONE);
@@ -125,9 +129,12 @@ public class NewTabFragment extends Fragment {
 
 
 
-    //appbar back button
+    //appbar set back button
     @SuppressLint("RestrictedApi")
     private void createMenuSlider() {
+        //appbar back button
+        setHasOptionsMenu(true);
+
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -136,11 +143,15 @@ public class NewTabFragment extends Fragment {
 
 
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        getFragmentManager().beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                .remove(NewTabFragment.this)
+                .commit();
+        return true;
+    }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        getFragmentManager().beginTransaction().remove(NewTabFragment.this).commitAllowingStateLoss();
-//        return true;
-//    }
+
 
 }

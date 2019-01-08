@@ -1,6 +1,7 @@
 package com.example.rmaahmadov.mytask.api;
 
 import java.security.cert.CertificateException;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
@@ -19,6 +20,7 @@ public class ApiClient {
     public static Retrofit retrofit;
     
     public static Retrofit getApiClient(){
+
         if(retrofit==null){
             retrofit= new Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -54,6 +56,11 @@ public class ApiClient {
             sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
             // Create an ssl socket factory with our all-trusting manager
             final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+
+
+
+
+
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
             builder.sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0]);
             builder.hostnameVerifier(new HostnameVerifier() {

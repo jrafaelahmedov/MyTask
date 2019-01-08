@@ -10,8 +10,10 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Patterns;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -43,6 +45,7 @@ public class RegistrationFragment extends Fragment {
     AppBarLayout appBarLayout;
     Animation upToDown,downtoup;
     LinearLayout linearLayoutUpToDown,linearLayoutDownToUp;
+    DrawerLayout mynav;
 
 
 
@@ -67,6 +70,7 @@ public class RegistrationFragment extends Fragment {
         downtoup=AnimationUtils.loadAnimation(getActivity(),R.anim.spashscreenanimation);
         linearLayoutUpToDown.setAnimation(downtoup);
         linearLayoutDownToUp.setAnimation(downtoup);
+        mynav=getActivity().findViewById(R.id.activityhomelayout);
         return view;
     }
 
@@ -76,6 +80,15 @@ public class RegistrationFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                closeKeyboard();
+                return true;
+            }
+        });
+
 
         moveToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +127,8 @@ public class RegistrationFragment extends Fragment {
                                 if (val > 0) {
                                     setupViewPager();
                                     getFragmentManager().beginTransaction().remove(RegistrationFragment.this).commitAllowingStateLoss();
+                                    mynav.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                                    getActivity().getWindow().setNavigationBarColor(getResources().getColor(R.color.blue));
                                 }
                             } else {
                                 Toast.makeText(getActivity(), "This user Already Created!!", Toast.LENGTH_SHORT).show();

@@ -7,9 +7,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -39,6 +44,7 @@ public class LoginFragment extends Fragment {
     CheckBox checkBoxLogin;
     Animation upToDown,downtoup;
     LinearLayout linearLayoutUpToDown,linearLayoutDownToUp;
+    DrawerLayout mynav;
 
     @Nullable
     @Override
@@ -52,6 +58,13 @@ public class LoginFragment extends Fragment {
         mProgressbar = view.findViewById(R.id.progressBarLogin);
         checkBoxLogin = view.findViewById(R.id.checkboxLogin);
         moveToRegistartion = view.findViewById(R.id.textViewMoveToRegistration);
+
+
+        mynav=getActivity().findViewById(R.id.activityhomelayout);
+        mynav.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
+
+
         utils();
         loadAnimation();
         return view;
@@ -62,6 +75,14 @@ public class LoginFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                closeKeyboard();
+                return true;
+            }
+        });
 
         mProgressbar.setVisibility(View.GONE);
 
@@ -125,6 +146,7 @@ public class LoginFragment extends Fragment {
         linearLayoutUpToDown.setAnimation(downtoup);
         linearLayoutDownToUp.setAnimation(downtoup);
     }
+
 
 
 

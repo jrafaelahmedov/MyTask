@@ -2,18 +2,21 @@ package com.example.rmaahmadov.mytask.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
@@ -42,6 +45,7 @@ public class PinFragment extends Fragment implements MyKeyboardClick{
     AppBarLayout appBarLayout;
     Animation animation;
     RelativeLayout relativeLayout;
+    DrawerLayout mynav;
 
 
     @Nullable
@@ -66,6 +70,10 @@ public class PinFragment extends Fragment implements MyKeyboardClick{
         appBarLayout = getActivity().findViewById(R.id.appbar);
         mProgressbar.setVisibility(View.GONE);
         db = new DatabaseHelper(getActivity());
+
+        mynav=getActivity().findViewById(R.id.activityhomelayout);
+        mynav.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
         return view;
     }
 
@@ -94,8 +102,9 @@ public class PinFragment extends Fragment implements MyKeyboardClick{
                     if (res == true) {
                         closeKeyboard();
                         setupViewPager();
-
                         getFragmentManager().beginTransaction().remove(PinFragment.this).commitAllowingStateLoss();
+                        mynav.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                        getActivity().getWindow().setNavigationBarColor(getResources().getColor(R.color.blue));
                     } else {
                         Toast.makeText(getActivity(), "Pin invalid!!", Toast.LENGTH_LONG).show();
                     }

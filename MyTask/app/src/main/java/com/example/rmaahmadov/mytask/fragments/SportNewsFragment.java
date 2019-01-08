@@ -74,7 +74,7 @@ public class SportNewsFragment extends Fragment implements MyInterface ,SwipeRef
                 loadJson();
                 swipeRefreshLayout.setRefreshing(false);
             }
-        }, 3000);
+        }, 1000);
     }
 
 
@@ -130,8 +130,10 @@ public class SportNewsFragment extends Fragment implements MyInterface ,SwipeRef
         bundle.putParcelable("HomeNews", articles.get(position));
         fragment.setArguments(bundle);
         FragmentManager manager = getActivity().getSupportFragmentManager();
-        manager.beginTransaction().addToBackStack(null)
+        manager.beginTransaction()
+                .addToBackStack(null)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .add(R.id.activitymaincontainer, fragment,"newTab").commit();
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                .replace(R.id.activitymaincontainer, fragment, "newTab").commit();
     }
 }

@@ -77,7 +77,7 @@ public class HomeNewsFragment extends Fragment implements MyInterface, SwipeRefr
                 loadJson();
                 swipeRefreshLayout.setRefreshing(false);
             }
-        }, 3000);
+        }, 1000);
     }
 
 
@@ -108,6 +108,8 @@ public class HomeNewsFragment extends Fragment implements MyInterface, SwipeRefr
                     adapter.notifyDataSetChanged();
                     progressBar.setVisibility(View.GONE);
                 } else {
+                    Toast.makeText(getActivity(), "No Internet Connection!", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
                 }
             }
 
@@ -126,8 +128,8 @@ public class HomeNewsFragment extends Fragment implements MyInterface, SwipeRefr
         bundle.putParcelable("HomeNews", articles.get(position));
         fragment.setArguments(bundle);
         FragmentManager manager = getActivity().getSupportFragmentManager();
-
-        manager.beginTransaction().addToBackStack(null)
+        manager.beginTransaction()
+                .addToBackStack(null)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .replace(R.id.activitymaincontainer, fragment, "newTab").commit();

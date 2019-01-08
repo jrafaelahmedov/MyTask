@@ -15,7 +15,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher1_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -28,7 +29,7 @@
             />
 
 
-        <activity android:name=".activitys.SplashScreenActivity">
+        <activity android:name=".activitys.SplashScreenActivity" android:theme="@style/MyTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
